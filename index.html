@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html ng-app="App">
+	<head>
+		<title>Angular JS - Sort and Filter Example</title>
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+	</head>
+	<body>
+		<div ng-controller="AppController">
+			<div ng-repeat="contact in contacts">
+				<div>
+					<p>Name: {{contact.name}}</p>
+					<p>Age: {{contact.age}}</p>
+					<p>Gender: {{contact.gender}}</p>
+				</div>
+			</div>
+		</div>
+	</body>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular.js"></script>
+	<script src="app.js"></script>
+</html>
