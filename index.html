@@ -6,7 +6,12 @@
 	</head>
 	<body>
 		<div ng-controller="AppController">
-			<div ng-repeat="contact in contacts">
+			<div>
+				Sort Order: 
+				<select ng-model="sortOrder" ng-options="option for option in sortOrderOptions">
+				</select>
+			</div>
+			<div ng-repeat="contact in contacts | orderBy: sortOrder">
 				<div>
 					<p>Name: {{contact.name}}</p>
 					<p>Age: {{contact.age}}</p>

@@ -20,5 +20,7 @@ app.controller('AppController', function($scope) {
 			name: 'Abigail',
 			age: 0,
 			gender: 'Female'
-		}];	
+		}];
+	$scope.sortOrderOptions = ['name','age','gender'];
+	$scope.sortOrder = 'name';
 });
