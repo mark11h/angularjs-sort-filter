@@ -11,7 +11,12 @@
 				<select ng-model="sortOrder" ng-options="option for option in sortOrderOptions">
 				</select>
 			</div>
-			<div ng-repeat="contact in contacts | orderBy: sortOrder">
+			<div>
+				<div ng-repeat="item in genderFilter | orderBy: 'name'">
+					<input type="checkbox" ng-model="item.selected" />{{item.name}}
+				</div>
+			</div>
+			<div ng-repeat="contact in contacts | orderBy: sortOrder | byGender:genderFilter as filtered">
 				<div>
 					<p>Name: {{contact.name}}</p>
 					<p>Age: {{contact.age}}</p>
