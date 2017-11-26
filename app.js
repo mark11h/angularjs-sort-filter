@@ -21,9 +21,22 @@ app.controller('AppController', function($scope) {
 			age: 0,
 			gender: 'Female'
 		}];
+		
 	$scope.sortOrderOptions = ['name','age','gender'];
 	$scope.sortOrder = 'name';
 	$scope.genderFilter = [];
+	$scope.currentFilters = {
+		gender: false
+	}
+	
+	$scope.hideFilter = function(filter) {
+		if (filter === 'gender') {
+			for (var i = 0; i < $scope.genderFilter.length; i++) {
+				$scope.genderFilter[i].selected = false;
+			}
+			$scope.currentFilters.gender = false;
+		}
+	}
 	
 	for (var i = 0; i < $scope.contacts.length; i++) {
 		buildGenderFilter($scope.contacts[i]);
@@ -51,7 +64,7 @@ app.controller('AppController', function($scope) {
 	}
 })
 .filter('byGender', function () {
-	return function (items, gender) {
+	return function (items, gender, currentFilters) {
 
 		if (typeof items == 'undefined') {
 			return;
@@ -73,15 +86,21 @@ app.controller('AppController', function($scope) {
 		}
 
 		var filtered = [];
-
+		var filterSelected = false;
+		
 		for (var i = 0; i < items.length; i++) {
 			var item = items[i];
 
 			for (var j = 0; j < gender.length; j++) {
 				if (item.gender == gender[j].name && gender[j].selected) {
+					filterSelected = true;
 					filtered.push(item);
 				}
 			}			
+		}
+		
+		if (filterSelected) {
+			currentFilters.gender = true;
 		}
 
 		return filtered;
