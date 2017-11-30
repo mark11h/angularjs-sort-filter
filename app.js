@@ -26,7 +26,8 @@ app.controller('AppController', function($scope) {
 	$scope.sortOrder = 'name';
 	$scope.genderFilter = [];
 	$scope.currentFilters = {
-		gender: false
+		gender: false,
+		name: false
 	}
 	
 	$scope.hideFilter = function(filter) {
@@ -35,6 +36,10 @@ app.controller('AppController', function($scope) {
 				$scope.genderFilter[i].selected = false;
 			}
 			$scope.currentFilters.gender = false;
+		}
+		if (filter === 'name') {
+			$scope.nameFilter = "";
+			$scope.currentFilters.name = false;
 		}
 	}
 	
@@ -105,4 +110,36 @@ app.controller('AppController', function($scope) {
 
 		return filtered;
 	}
+})
+.filter('byName', function () {
+	return function (items, name, currentFilters) {
+
+		var filterinuse = false;
+
+		if (typeof items == 'undefined') {
+			return;
+		}
+
+		if (typeof name == 'undefined') {
+			return items;
+		}
+
+		var filtered = [];
+
+		for (var i = 0; i < items.length; i++) {
+			var item = items[i];
+
+			if (item.name.toLowerCase().indexOf(name.toLowerCase()) != -1) {
+				filtered.push(item);
+			}
+		}
+
+		if (name != "") {
+			filterinuse = true;
+		}
+
+		currentFilters.name = filterinuse;
+
+		return filtered;
+	};
 });

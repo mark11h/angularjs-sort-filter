@@ -13,13 +13,20 @@
 			</div>
 			<div>
 				<a href="" ng-click="hideFilter('gender')" ng-show="currentFilters.gender">Remove Gender Filter</a>
+				<a href="" ng-click="hideFilter('name')" ng-show="currentFilters.name">Remove Name Filter</a>
 			</div>
 			<div>
+				<p>Filter by:</p>
 				<div ng-repeat="item in genderFilter | orderBy: 'name'">
+					<label>Gender</label>
 					<input type="checkbox" ng-model="item.selected" />{{item.name}}
 				</div>
+				<div>
+					<label>Name</label>
+					<input type="text" ng-model="nameFilter" />
+				</div>
 			</div>
-			<div ng-repeat="contact in contacts | orderBy: sortOrder | byGender:genderFilter:currentFilters as filtered">
+			<div ng-repeat="contact in contacts | orderBy: sortOrder | byGender:genderFilter:currentFilters | byName:nameFilter:currentFilters as filtered">
 				<div>
 					<p>Name: {{contact.name}}</p>
 					<p>Age: {{contact.age}}</p>
