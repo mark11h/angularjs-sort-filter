@@ -142,4 +142,19 @@ app.controller('AppController', function($scope) {
 
 		return filtered;
 	};
+})
+.filter('genderFilterCount', function () {
+	return function (item, filtered) {
+
+		var count = 0;
+
+		for (var i = 0; i < filtered.length; i++) {
+			var x = filtered[i];
+
+			if (item.name == x.gender) {
+				count++;
+			}
+		}
+		return count;
+	}
 });

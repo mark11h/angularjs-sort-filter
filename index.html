@@ -19,7 +19,7 @@
 				<p>Filter by:</p>
 				<div ng-repeat="item in genderFilter | orderBy: 'name'">
 					<label>Gender</label>
-					<input type="checkbox" ng-model="item.selected" />{{item.name}}
+					<input type="checkbox" ng-model="item.selected" />{{item.name}} ({{item | genderFilterCount:filtered }})
 				</div>
 				<div>
 					<label>Name</label>
